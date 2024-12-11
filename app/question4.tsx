@@ -5,9 +5,9 @@ import EvilIcons from '@expo/vector-icons/EvilIcons';
 import { useRouter } from 'expo-router';
 import { LinearGradient } from 'expo-linear-gradient'; 
 
-export default function Question1() {
+export default function Question4() {
   const router = useRouter();
-  const [checked, setChecked] = useState('Red'); 
+  const [checked, setChecked] = useState('Yes'); 
 
   return (
     <LinearGradient
@@ -15,31 +15,30 @@ export default function Question1() {
       style={styles.gradientContainer} 
     >
       <View style={styles.container}>
-        
-        
+
         <TouchableOpacity onPress={() => router.back()} style={styles.arrowIconContainer}>
-          <EvilIcons name="arrow-left" size={20} color="white" />
+          <EvilIcons name="arrow-left" size={30} color="white" />
         </TouchableOpacity>
 
-        
-        <Text style={styles.questionTitle}>Question 1</Text> 
+        <Text style={styles.questionText}>Question 4:what are your favourite languages</Text>
 
-        
-        <Text style={styles.questionText}>What color is your favorite?</Text>
-
-        {/* Options */}
         <View style={styles.optionsContainer}>
-          {['Red', 'Blue', 'Green', 'Yellow'].map((option) => (
+          {['C++', 'C','java','python'].map((option) => (
             <TouchableOpacity key={option} style={styles.option} onPress={() => setChecked(option)}>
-              <RadioButton value={option} status={checked === option ? 'checked' : 'unchecked'} onPress={() => setChecked(option)} color="#9C27B0" />
-              <Text style={styles.optionText}>{option}</Text> 
+              <RadioButton 
+                value={option} 
+                status={checked === option ? 'checked' : 'unchecked'} 
+                onPress={() => setChecked(option)} 
+                color="#9C27B0" 
+              />
+              <Text style={styles.optionText}>{option}</Text>
             </TouchableOpacity>
           ))}
         </View>
 
-        <TouchableOpacity onPress={() => router.push('/question3')}>
+        <TouchableOpacity onPress={() => router.push('/question5')}>
           <LinearGradient
-            colors={['#411C59', '#7B28B1']} 
+            colors={['#411C59', '#7B28B1']}
             start={{ x: 0, y: 1 }}
             end={{ x: 1, y: 0 }}
             style={styles.gradientButton} 
@@ -56,8 +55,8 @@ export default function Question1() {
 
 const styles = StyleSheet.create({
   gradientContainer: { 
-    flex: 1 
-  },
+    flex: 1
+  }, 
   container: { 
     flex: 1, 
     padding: 20,
@@ -68,23 +67,17 @@ const styles = StyleSheet.create({
     top: 20, 
     left: 10 
   },
-  questionTitle: { 
-    fontSize: 18, 
-    fontWeight: 'bold', 
-    position: 'absolute', 
-    top: 20, 
-    left: 50, 
-    color: '#FFFFFF'
-  },
   questionText: { 
     fontSize: 20, 
     fontWeight: 'bold', 
     marginBottom: 30, 
     textAlign: 'center', 
-    color: '#FFFFFF' 
+    color: '#FFFFFF' ,
+    fontFamily:'"CharmanSerif"',
   },
   optionsContainer: {
-    marginBottom: 30
+    marginBottom: 30,
+    fontFamily:"NotoSans"
   },
   option: { 
     flexDirection: 'row', 

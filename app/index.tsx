@@ -9,6 +9,11 @@ export default function Question1() {
   const router = useRouter();
   const [checked, setChecked] = useState('Red'); 
 
+  
+  const handleNext = () => {
+    router.push('/question2');  
+  };
+
   return (
     <LinearGradient
       colors={['#511777', '#D1C0DC']} 
@@ -16,28 +21,23 @@ export default function Question1() {
     >
       <View style={styles.container}>
         
-        
+        {/* Back Arrow */}
         <TouchableOpacity onPress={() => router.back()} style={styles.arrowIconContainer}>
           <EvilIcons name="arrow-left" size={20} color="white" />
         </TouchableOpacity>
 
-        
-        <Text style={styles.questionTitle}>Question 1</Text> 
+        <Text style={styles.questionText}>Question 1: What color is your favorite color?</Text>
 
-        
-        <Text style={styles.questionText}>What color is your favorite?</Text>
-
-        {/* Options */}
         <View style={styles.optionsContainer}>
           {['Red', 'Blue', 'Green', 'Yellow'].map((option) => (
             <TouchableOpacity key={option} style={styles.option} onPress={() => setChecked(option)}>
               <RadioButton value={option} status={checked === option ? 'checked' : 'unchecked'} onPress={() => setChecked(option)} color="#9C27B0" />
-              <Text style={styles.optionText}>{option}</Text> 
+              <Text style={styles.optionText}>{option}</Text>
             </TouchableOpacity>
           ))}
         </View>
 
-        <TouchableOpacity onPress={() => router.push('/question3')}>
+        <TouchableOpacity onPress={() => router.push('/question2')}>
           <LinearGradient
             colors={['#411C59', '#7B28B1']} 
             start={{ x: 0, y: 1 }}
@@ -68,23 +68,17 @@ const styles = StyleSheet.create({
     top: 20, 
     left: 10 
   },
-  questionTitle: { 
-    fontSize: 18, 
-    fontWeight: 'bold', 
-    position: 'absolute', 
-    top: 20, 
-    left: 50, 
-    color: '#FFFFFF'
-  },
   questionText: { 
     fontSize: 20, 
     fontWeight: 'bold', 
     marginBottom: 30, 
     textAlign: 'center', 
-    color: '#FFFFFF' 
+    color: '#FFFFFF', 
+    fontFamily:'"CharmanSerif"',
   },
   optionsContainer: {
-    marginBottom: 30
+    marginBottom: 30,
+    fontFamily:"NotoSans"
   },
   option: { 
     flexDirection: 'row', 

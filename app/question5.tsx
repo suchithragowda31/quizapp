@@ -1,13 +1,21 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Alert } from 'react-native';
 import { RadioButton } from 'react-native-paper';
 import EvilIcons from '@expo/vector-icons/EvilIcons';
 import { useRouter } from 'expo-router';
 import { LinearGradient } from 'expo-linear-gradient'; 
 
-export default function Question1() {
+export default function Question5() {
   const router = useRouter();
-  const [checked, setChecked] = useState('Red'); 
+  const [checked, setChecked] = useState('option'); 
+
+  const handleFinish = () => {
+    if (checked === 'option') {
+      Alert.alert("Please select an option before finishing!");
+    } else {
+      Alert.alert("Thank you for completing the quiz!");
+    }
+  };
 
   return (
     <LinearGradient
@@ -15,36 +23,36 @@ export default function Question1() {
       style={styles.gradientContainer} 
     >
       <View style={styles.container}>
-        
-        
+      
         <TouchableOpacity onPress={() => router.back()} style={styles.arrowIconContainer}>
-          <EvilIcons name="arrow-left" size={20} color="white" />
+          <EvilIcons name="arrow-left" size={30} color="white" />
         </TouchableOpacity>
 
-        
-        <Text style={styles.questionTitle}>Question 1</Text> 
+        <Text style={styles.questionText}>Question 5: What is your favorite season?</Text>
 
-        
-        <Text style={styles.questionText}>What color is your favorite?</Text>
-
-        {/* Options */}
         <View style={styles.optionsContainer}>
-          {['Red', 'Blue', 'Green', 'Yellow'].map((option) => (
+          {['Spring', 'Summer', 'Autumn', 'Winter'].map((option) => (
             <TouchableOpacity key={option} style={styles.option} onPress={() => setChecked(option)}>
-              <RadioButton value={option} status={checked === option ? 'checked' : 'unchecked'} onPress={() => setChecked(option)} color="#9C27B0" />
-              <Text style={styles.optionText}>{option}</Text> 
+              <RadioButton 
+                value={option} 
+                status={checked === option ? 'checked' : 'unchecked'} 
+                onPress={() => setChecked(option)} 
+                color="#9C27B0" 
+              />
+              <Text style={styles.optionText}>{option}</Text>
             </TouchableOpacity>
           ))}
         </View>
 
-        <TouchableOpacity onPress={() => router.push('/question3')}>
+      
+        <TouchableOpacity style={styles.gradientButton} onPress={handleFinish}>
           <LinearGradient
             colors={['#411C59', '#7B28B1']} 
-            start={{ x: 0, y: 1 }}
-            end={{ x: 1, y: 0 }}
-            style={styles.gradientButton} 
+            start={{ x: 0, y: 1 }} 
+            end={{ x: 1, y: 0 }} 
+            style={styles.gradientButtonInner}
           >
-            <Text style={styles.nextButtonText}>Next</Text>
+            <Text style={styles.nextButtonText}>Finish</Text>
           </LinearGradient>
         </TouchableOpacity>
 
@@ -56,8 +64,8 @@ export default function Question1() {
 
 const styles = StyleSheet.create({
   gradientContainer: { 
-    flex: 1 
-  },
+    flex: 1
+  }, 
   container: { 
     flex: 1, 
     padding: 20,
@@ -68,24 +76,21 @@ const styles = StyleSheet.create({
     top: 20, 
     left: 10 
   },
-  questionTitle: { 
-    fontSize: 18, 
-    fontWeight: 'bold', 
-    position: 'absolute', 
-    top: 20, 
-    left: 50, 
-    color: '#FFFFFF'
-  },
+
   questionText: { 
     fontSize: 20, 
     fontWeight: 'bold', 
     marginBottom: 30, 
     textAlign: 'center', 
-    color: '#FFFFFF' 
+    color: '#FFFFFF' ,
+    fontFamily:'"CharmanSerif"',
   },
+
   optionsContainer: {
-    marginBottom: 30
+    marginBottom: 30,
+    fontFamily:"NotoSans"
   },
+
   option: { 
     flexDirection: 'row', 
     alignItems: 'center', 
@@ -94,22 +99,35 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     padding: 10 
   },
+
   optionText: { 
     fontSize: 16, 
     color: '#000', 
     marginLeft: 10 
   },
+
   gradientButton: { 
     borderRadius: 8, 
-    paddingVertical: 15, 
+    paddingVertical: 15,  
     paddingHorizontal: 20, 
-    alignItems: 'center' 
+    alignItems: 'center', 
+    justifyContent: 'center',  
   },
+
+  gradientButtonInner: { 
+    width: '100%', 
+    height: 50,  
+    justifyContent: 'center', 
+    alignItems: 'center', 
+    borderRadius: 8,  
+  },
+
   nextButtonText: { 
     color: '#FFFFFF', 
-    fontSize: 18, 
-    fontWeight: 'bold' 
+    fontSize: 18,  
+    fontWeight: 'bold',
   },
+
   darkLine: { 
     width: '50%', 
     height: 2, 
