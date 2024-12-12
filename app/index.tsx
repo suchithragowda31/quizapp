@@ -21,7 +21,7 @@ export default function Question1() {
     >
       <View style={styles.container}>
         
-        {/* Back Arrow */}
+        
         <TouchableOpacity onPress={() => router.back()} style={styles.arrowIconContainer}>
           <EvilIcons name="arrow-left" size={20} color="white" />
         </TouchableOpacity>
