@@ -21,7 +21,7 @@ export default function Question1() {
           <EvilIcons name="arrow-left" size={30} color="white" />
         </TouchableOpacity>
 
-        <Text style={styles.questionText}>Question 2: What color is your favorite dish?</Text>
+        <Text style={styles.questionText}>Question 2: What is your favorite dish?</Text>
 
         <View style={styles.optionsContainer}>
           {['biryani', 'idli', 'pulav', 'dosa'].map((option) => (
